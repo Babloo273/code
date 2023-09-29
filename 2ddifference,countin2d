@@ -1,0 +1,82 @@
+/* Babloo Verma */ 
+#include<bits/stdc++.h>
+#define ll long long int
+#define ull unsigned long long
+using namespace std;
+ 
+#define fastio() ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define MOD 1000000007
+#define MOD1 998244353
+#define INF 1e18
+#define nline "\n"
+#define pb push_back
+#define ppb pop_back
+#define mp make_pair
+#define ff first
+#define ss second
+#define PIE 3.141592653589793238462
+#define set_bits __builtin_popcountll
+#define sz(x) ((int)(x).size()) 
+#define all(x) (x).begin(), (x).end()
+#define jada INT_MAX
+
+
+int main(){
+
+int n,m;
+cin>>n>>m;
+
+vector <vector<char>> arr(n,vector<char>(m,'0'));
+for(int i = 0 ; i < n ; i++) {
+    string s;
+    cin>>s;
+    for(int j = 0 ; j < m ; j++) {
+        arr[i][j] = s[j];
+    }
+}
+int temp[n+1][m+1]={0,0};
+int q;
+cin>>q;
+while(q--){
+	int x1,y1,x2,y2;
+	cin>>x1>>y1>>x2>>y2;
+
+   x1--;y1--;x2--;y2--;
+
+temp[x1][y1]++;
+temp[x2+1][y2+1]++;
+temp[x1][y2+1]--;
+temp[x2+1][y1]--;
+
+
+}
+
+for(int i=0;i<m;i++){
+	for(int j=1;j<n;j++){
+      temp[j][i]+=temp[j-1][i];
+	}
+}
+
+for(int i=0;i<n;i++){
+	for(int j=1;j<m;j++){
+		temp[i][j]+=temp[i][j-1];
+	}
+}
+
+for(int i=0;i<n;i++){
+	for(int j=0;j<m;j++){
+		if(temp[i][j]%2!=0){
+			if(arr[i][j]=='0')
+				cout<<1;
+			else
+				cout<<0;
+		}
+		else
+			cout<<arr[i][j]-'0';
+	}
+	cout<<endl;
+}
+
+
+return 0;
+}
