@@ -1,0 +1,62 @@
+/* Babloo Verma */ 
+#include<bits/stdc++.h>
+#define ll long long int
+#define ull unsigned long long
+using namespace std;
+ 
+#define fastio() ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define MOD 1000000007
+#define MOD1 998244353
+#define INF 1e18
+#define nline "\n"
+#define pb push_back
+#define ppb pop_back
+#define mp make_pair
+#define ff first
+#define ss second
+#define PIE 3.141592653589793238462
+#define set_bits __builtin_popcountll
+#define sz(x) ((int)(x).size()) 
+#define all(x) (x).begin(), (x).end()
+#define jada INT_MAX
+
+
+
+
+int main() {
+	// your code goes here
+	 int t;
+	cin >> t;
+	// cout<<t<<endl;
+	while(t--){
+	    int n,q;
+// cout<<"hii";
+	    cin>>n>>q;
+	     // cout<<n<<q;
+	     // cout<<endl;
+	    vector<int>v(n+2,0);
+	    vector<int>v2(n+2,0);
+	    while(q--){
+	    	// cout<<"hii";
+	    	int x,y;
+	    	cin>>x>>y;
+
+	    	v[x]++;
+	    	v[y+1]--;
+	    	// cout<<y;
+	    	// cout<<v[x]<<v[y+1]<<endl;
+	    	v2[y+1]-=(y-x+1);
+	    }
+
+        for(int i=1;i<=n;i++){
+        	v[i]+=v[i-1];
+
+            v2[i]+=(v2[i-1]+v[i]);
+            cout<<v2[i]<<" ";
+
+        } 
+        cout<<endl;
+	}
+
+	return 0;
+}
